@@ -42,6 +42,9 @@ export class ChatFlow implements IChatFlow {
     speechToText?: string
 
     @Column({ nullable: true, type: 'text' })
+    textToSpeech?: string
+
+    @Column({ nullable: true, type: 'text' })
     followUpPrompts?: string
 
     @Column({ nullable: true, type: 'text' })
@@ -59,5 +62,8 @@ export class ChatFlow implements IChatFlow {
     updatedDate: Date
 
     @Column({ nullable: true, type: 'text' })
-    workspaceId?: string
+    mcpServerConfig?: string
+
+    @Column({ nullable: false, type: 'text' })
+    workspaceId: string
 }

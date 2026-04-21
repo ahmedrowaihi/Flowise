@@ -30,7 +30,8 @@ export enum MODE {
 export enum ChatType {
     INTERNAL = 'INTERNAL',
     EXTERNAL = 'EXTERNAL',
-    EVALUATION = 'EVALUATION'
+    EVALUATION = 'EVALUATION',
+    MCP = 'MCP'
 }
 
 export enum ChatMessageRatingType {
@@ -64,12 +65,14 @@ export interface IChatFlow {
     apikeyid?: string
     analytic?: string
     speechToText?: string
+    textToSpeech?: string
     chatbotConfig?: string
     followUpPrompts?: string
     apiConfig?: string
     category?: string
     type?: ChatflowType
-    workspaceId?: string
+    mcpServerConfig?: string
+    workspaceId: string
 }
 
 export interface IChatMessage {
@@ -82,6 +85,7 @@ export interface IChatMessage {
     usedTools?: string
     fileAnnotations?: string
     agentReasoning?: string
+    reasonContent?: string
     fileUploads?: string
     artifacts?: string
     chatType: string
@@ -114,7 +118,7 @@ export interface ITool {
     func?: string
     updatedDate: Date
     createdDate: Date
-    workspaceId?: string
+    workspaceId: string
 }
 
 export interface IAssistant {
@@ -124,7 +128,7 @@ export interface IAssistant {
     iconSrc?: string
     updatedDate: Date
     createdDate: Date
-    workspaceId?: string
+    workspaceId: string
 }
 
 export interface ICredential {
@@ -134,7 +138,7 @@ export interface ICredential {
     encryptedData: string
     updatedDate: Date
     createdDate: Date
-    workspaceId?: string
+    workspaceId: string
 }
 
 export interface IVariable {
@@ -144,7 +148,7 @@ export interface IVariable {
     type: string
     updatedDate: Date
     createdDate: Date
-    workspaceId?: string
+    workspaceId: string
 }
 
 export interface ILead {
@@ -176,7 +180,7 @@ export interface IExecution {
     createdDate: Date
     updatedDate: Date
     stoppedDate: Date
-    workspaceId?: string
+    workspaceId: string
 }
 
 export interface IComponentNodes {
@@ -332,7 +336,7 @@ export interface ICredentialReqBody {
     name: string
     credentialName: string
     plainDataObj: ICredentialDataDecrypted
-    workspaceId?: string
+    workspaceId: string
 }
 
 // Decrypted credential object sent back to client
@@ -343,15 +347,6 @@ export interface ICredentialReturnResponse extends ICredential {
 export interface IUploadFileSizeAndTypes {
     fileTypes: string[]
     maxUploadSize: number
-}
-
-export interface IApiKey {
-    id: string
-    keyName: string
-    apiKey: string
-    apiSecret: string
-    updatedDate: Date
-    workspaceId?: string
 }
 
 export interface ICustomTemplate {
@@ -365,7 +360,7 @@ export interface ICustomTemplate {
     badge?: string
     framework?: string
     usecases?: string
-    workspaceId?: string
+    workspaceId: string
 }
 
 export interface IFlowConfig {
@@ -410,6 +405,7 @@ export interface IExecuteFlowParams extends IPredictionQueueAppServer {
     parentExecutionId?: string
     iterationContext?: ICommonObject
     isTool?: boolean
+    chatType?: ChatType
 }
 
 export interface INodeOverrides {
@@ -426,6 +422,13 @@ export interface IVariableOverride {
     name: string
     type: 'static' | 'runtime'
     enabled: boolean
+}
+
+export interface IMcpServerConfig {
+    enabled: boolean
+    token: string
+    description?: string
+    toolName?: string
 }
 
 // DocumentStore related

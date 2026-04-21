@@ -37,7 +37,7 @@ class Retriever_Agentflow implements INode {
     constructor() {
         this.label = 'Retriever'
         this.name = 'retrieverAgentflow'
-        this.version = 1.0
+        this.version = 1.1
         this.type = 'Retriever'
         this.category = 'Agent Flows'
         this.description = 'Retrieve information from vector database'
@@ -88,8 +88,7 @@ class Retriever_Agentflow implements INode {
                         label: 'Key',
                         name: 'key',
                         type: 'asyncOptions',
-                        loadMethod: 'listRuntimeStateKeys',
-                        freeSolo: true
+                        loadMethod: 'listRuntimeStateKeys'
                     },
                     {
                         label: 'Value',
